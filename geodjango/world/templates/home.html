@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenStreetMap with Leaflet.js</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <style>
+        #map {
+            height: 920px;
+            width: 100%;
+        }
+        .leaflet-top.leaflet-right {
+            z-index: 1000;
+            position: absolute; 
+            top: 10px; 
+            right: 10px; 
+        }
+        .custom-control {
+            background-color: white;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+        var map = L.map('map').setView([45.03, 41.96], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var markers = [];
+
+        // Функция для добавления маркера на карту
+        function addMarker(lat, lng) {
+            var marker = L.marker([lat, lng]).addTo(map)
+                .bindPopup('Координаты: ' + lat.toFixed(4) + ', ' + lng.toFixed(4))
+                .openPopup();
+            markers.push(marker); // Добавляем маркер в массив
+        }
+
+        // Функция для удаления всех маркеров с карты
+        function deleteMarkers() {
+            for (var i = 0; i < markers.length; i++) {
+                map.removeLayer(markers[i]); // Удаляем маркер с карты
+            }
+            markers = []; // Очищаем массив маркеров
+        }
+
+        // Обработчик события при клике на карту для добавления метки
+        map.on('click', function(e) {
+            var lat = e.latlng.lat; // Широта (latitude) клика
+            var lng = e.latlng.lng; // Долгота (longitude) клика
+
+            addMarker(e.latlng.lat, e.latlng.lng);
+        });
+
+
+        // Удаление меток - кнопка
+        var customControl = L.Control.extend({
+            options: {
+                position: 'topright'
+            },
+
+            onAdd: function(map) {
+                var container = L.DomUtil.create('div', 'custom-control');
+                container.innerHTML = 'Удалить метки';
+
+                container.onclick = function() {
+                    event.stopPropagation(); // Предотвращаем распространение события клика на карту
+                    deleteMarkers(); // Пример действия при клике на контроллер
+                };
+
+                return container;
+            }
+        });
+
+        map.addControl(new customControl());
+    </script>
+</body>
+</html>
