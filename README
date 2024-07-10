@@ -1,10 +1,12 @@
+>| prac папка с виртуаленв, prac\prac-env\Scripts\activate. Там установлены все библиотеки - pip list
+geodjango сам проект
+
 >| OpenStreetMap находится в localhost:[port]/api/home/
 
 >| .../api/last_rainfall/<latitude>/<longitude> - связь с функций в views, она должна брать данные из БД и сопоставлять их с параметрами в <>, но это не работает(
 
 >| .../admin - это админка, в ней можно быстро добавлять данные в БД по существующим классам, созданным в models.py при помощи {python geodjango\manage.py makemigrtaions} -> {python geodjango\manage.py migrate} (manage.py <- cd geodjango)
 Но сначала нужно эти классы будет объявить в файле models.py 
-
 
 >| ogrinspect ,,, - может описать структуру БД из файла на языке python в виде класса
 
