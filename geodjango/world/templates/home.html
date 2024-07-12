@@ -45,17 +45,17 @@
             fetch(`/api/last_rainfall/${lat}/${lng}/`)
                 .then(response => response.json())
                 .then(data => {
-                    var popupContent = `Latitude: ${lat}, Longitude: ${lng}<br>Station: ${data.station}<br>`;
+                    var popupContent = `Широта: ${lat}, Долгота: ${lng}<br>Станция: ${data.station}<br>`;
                     if (data.date) {
-                        popupContent += `Last Rainfall: ${data.date}<br>Rainfall Amount: ${data.rainfall} mm`;
+                        popupContent += `Последний дожль был: ${data.date}<br>Количество осадков: ${data.rainfall} мм`;
                     } else {
-                        popupContent += `No rainfall data available.`;
+                        popupContent += `Дождя не было`;
                     }
                     marker.bindPopup(popupContent).openPopup();
                 })
                 .catch(error => {
-                    console.error('Error fetching rainfall data:', error);
-                    marker.bindPopup(`Latitude: ${lat}, Longitude: ${lng}<br>Unable to fetch rainfall data.`).openPopup();
+                    console.error('Ошибка получения запроса:', error);
+                    marker.bindPopup(`Широта: ${lat}, Долгота: ${lng}<br>Невозможно получить актуальную информацию.`).openPopup();
                 });
         }
 
