@@ -35,28 +35,29 @@
 
         var markers = [];
 
-        // Функция для добавления маркера на карту
-        function addMarker(lat, lng) {
-            var marker = L.marker([lat, lng]).addTo(map);
-            markers.push(marker); // Добавляем маркер в массив
+        map.on('click', function(e) {
+            var lat = e.latlng.lat;
+            var lng = e.latlng.lng;
 
-
-            // Fetch last rainfall data
-            fetch(`/api/last_rainfall/${lat}/${lng}/`)
+            fetch(`/api/last_rainfall/${lng}/${lat}/`)
                 .then(response => response.json())
                 .then(data => {
-                    var popupContent = `Широта: ${lat}, Долгота: ${lng}<br>Станция: ${data.station}<br>`;
-                    if (data.date) {
-                        popupContent += `Последний дожль был: ${data.date}<br>Количество осадков: ${data.rainfall} мм`;
-                    } else {
-                        popupContent += `Дождя не было`;
-                    }
-                    marker.bindPopup(popupContent).openPopup();
+                    addMarker(lat, lng, data);
                 })
                 .catch(error => {
-                    console.error('Ошибка получения запроса:', error);
-                    marker.bindPopup(`Широта: ${lat}, Долгота: ${lng}<br>Невозможно получить актуальную информацию.`).openPopup();
+                    console.error('Ошибка сбора данных о погоде:', error);
+                    addMarker(lat, lng);
                 });
+        });
+
+        function addMarker(lat, lng, data) {
+            var marker = L.marker([lat, lng]).addTo(map); // Координатная плоскость спутаная почему то, поэтому их приходится в идеале менять местами
+            var popupContent = `Широта: ${lat}, Долгота: ${lng}`;
+            if (data) {
+                popupContent += `<br>Станция №${data.station}<br>Последний дождь на ${data.rainfall}мм был ${data.date}`;
+            }
+            marker.bindPopup(popupContent).openPopup();
+            markers.push(marker);
         }
 
         // Функция для удаления всех маркеров с карты
@@ -66,14 +67,6 @@
             }
             markers = []; // Очищаем массив маркеров
         }
-
-        // Обработчик события при клике на карту для добавления метки
-        map.on('click', function(e) {
-            var lat = e.latlng.lat; // Широта (latitude) клика
-            var lng = e.latlng.lng; // Долгота (longitude) клика
-
-            addMarker(e.latlng.lat, e.latlng.lng);
-        });
 
 
         // Удаление меток - кнопка
@@ -88,7 +81,7 @@
 
                 container.onclick = function() {
                     event.stopPropagation(); // Предотвращаем распространение события клика на карту
-                    deleteMarkers(); // Пример действия при клике на контроллер
+                    deleteMarkers(); 
                 };
 
                 return container;
