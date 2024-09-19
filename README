@@ -3,7 +3,7 @@ geodjango сам проект
 
 >| OpenStreetMap находится в localhost:[port]/api/home/
 
->| .../api/last_rainfall/<latitude>/<longitude> - связь с функций в views, она должна брать данные из БД и сопоставлять их с параметрами в <>, но это не работает(
+>| .../api/last_rainfall/<latitude>/<longitude> - связь с функций в views, она должна брать данные из БД и сопоставлять их с параметрами в <>
 
 >| .../admin - это админка, в ней можно быстро добавлять данные в БД по существующим классам, созданным в models.py при помощи {python geodjango\manage.py makemigrtaions} -> {python geodjango\manage.py migrate} (manage.py <- cd geodjango)
 Но сначала нужно эти классы будет объявить в файле models.py 
