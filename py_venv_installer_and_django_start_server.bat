@@ -15,6 +15,9 @@ python -m venv "%folder_name%_venv"
 call %folder_name%_venv\Scripts\activate.bat
 python -m pip install --upgrade pip
 pip install -r "requirements.txt"
+pyhon fgeovisor\manage.py migrate
+pyhon fgeovisor\manage.py makemigrations
+pyhon fgeovisor\manage.py migrate
 reg add "%regKey%" /v "%regValue%" /t REG_SZ /d "Запущен %date% %time%" /f
 :end
 call %folder_name%_venv\Scripts\activate.bat
