@@ -38,24 +38,11 @@
         map.on('click', function(e) {
             var lat = e.latlng.lat;
             var lng = e.latlng.lng;
-
-            fetch(`/api/last_rainfall/${lng}/${lat}/`)
-                .then(response => response.json())
-                .then(data => {
-                    addMarker(lat, lng, data);
-                })
-                .catch(error => {
-                    console.error('Ошибка сбора данных о погоде:', error);
-                    addMarker(lat, lng);
-                });
         });
 
         function addMarker(lat, lng, data) {
             var marker = L.marker([lat, lng]).addTo(map); // Координатная плоскость спутаная почему то, поэтому их приходится в идеале менять местами
             var popupContent = `Широта: ${lat}, Долгота: ${lng}`;
-            if (data) {
-                popupContent += `<br>Станция №${data.station}<br>Последний дождь на ${data.rainfall}мм был ${data.date}`;
-            }
             marker.bindPopup(popupContent).openPopup();
             markers.push(marker);
         }
