@@ -7,6 +7,9 @@ from .models import Polygon, Image, SessionStorage, ActivityLog
 @admin.register(Polygon, Image)
 class admin_overview(admin.GISModelAdmin):
     gis_widget = OSMWidget
+    gis_widget.default_lat = 45.04
+    gis_widget.default_lon = 41.97
+    gis_widget.default_zoom = 15
 
 @admin.register(SessionStorage, ActivityLog)
 class admin_overview_log_and_session(admin.ModelAdmin):

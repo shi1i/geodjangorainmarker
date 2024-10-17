@@ -14,7 +14,7 @@ class Polygon(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"Полигон - {self.user}, создан - {self.created_at}"
+        return f"Полигон - {self.user_id}, создан - {self.created_at}"
 
 # Модель изображения
 class Image(models.Model):
