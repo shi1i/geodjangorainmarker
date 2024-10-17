@@ -18,4 +18,4 @@ pip install -r "requirements.txt"
 reg add "%regKey%" /v "%regValue%" /t REG_SZ /d "Запущен %date% %time%" /f
 :end
 call %folder_name%_venv\Scripts\activate.bat
-python manage.py runserver 8000
+python fgeovisor\manage.py runserver 8000
