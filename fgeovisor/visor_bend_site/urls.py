@@ -20,8 +20,11 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from site_back.views import UserPolygonsView
+
 
 urlpatterns = [
     path('secretadmin/', admin.site.urls),
-    path('api/', include('site_back.urls'))
+    path('api/', include('site_back.urls')),
+    path('api/users/', UserPolygonsView.as_view())
 ]
