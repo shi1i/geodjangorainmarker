@@ -13,7 +13,7 @@ class Polygon(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        unique_together = ['login', 'login_id', 'polygon_data']
+        unique_together = ['login', 'polygon_data']
 
     def __str__(self):
         return f"Полигон - {self.login}, создан - {self.created_at}"
@@ -21,7 +21,7 @@ class Polygon(models.Model):
 # Модель изображения
 class Image(models.Model):
     polygon = models.ForeignKey(Polygon, related_name=('images'), on_delete=models.CASCADE)
-    url = models.ImageField(upload_to='IMAGES') # Ссылка на изображение или путь в хранилище
+    url = models.ImageField(upload_to='fgeovisor/site_back/IMAGES') # Ссылка на изображение или путь в хранилище
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
