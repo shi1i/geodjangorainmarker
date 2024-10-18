@@ -8,7 +8,7 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <style>
         #map {
-            height: 920px;
+            height: 100vh;
             width: 100%;
         }
         .leaflet-top.leaflet-right {
@@ -25,13 +25,14 @@
         }
     </style>
 </head>
-<body>
+<body style="overflow: hidden;">
     <div id="map"></div>
     <script>
-        var southWest = L.latLng(-85.0511287798, -200),
-            northEast = L.latLng(85.0511287798, 200);
+        var southWest = L.latLng(-85.0511287798, -180),
+    northEast = L.latLng(85.0511287798, 180);
         var bounds = L.latLngBounds(southWest, northEast);
-        var map = L.map('map', {maxBounds: bounds, maxBoundsViscosity: 1.0}).setView([45.03, 41.96], 13);
+
+        var map = L.map('map', {maxBounds: bounds, maxBoundsViscosity: 1.0, minZoom: 3}).setView([45.03, 41.96], 13);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
