@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "django.contrib.gis",
     "rest_framework",
-    'site_back',
+    'site_back.apps.SiteBackConfig',
 ]
 
 MIDDLEWARE = [
