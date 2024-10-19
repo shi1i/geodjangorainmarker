@@ -20,5 +20,5 @@ pyhon fgeovisor\manage.py makemigrations
 pyhon fgeovisor\manage.py migrate
 reg add "%regKey%" /v "%regValue%" /t REG_SZ /d "Запущен %date% %time%" /f
 :end
-call %folder_name%_venv\Scripts\activate.bat
-python fgeovisor\manage.py runserver 8000
+call geodjangorainmarker-main_venv\Scripts\activate.bat
+python fgeovisor\manage.py runserver 192.168.1.122:8001

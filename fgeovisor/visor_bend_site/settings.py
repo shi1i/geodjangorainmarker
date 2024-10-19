@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-3^y5vm%)(vx7*o1an+qf0hc88nxnub=v6)#r)x(a@6k@v-1t%x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.122','109.168.146.244']
+
+X_FRAME_OPTIONS = "SAMEORIGIN"
 
 
 # Application definition
@@ -81,9 +83,9 @@ WSGI_APPLICATION = 'visor_bend_site.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'fgeovisor2',
+        'NAME': 'proj',
         'USER': 'postgres',
-        'PASSWORD': '6451yyul',
+        'PASSWORD': '1707',
         'HOST': 'localhost',
         'PORT': '',
     }
