@@ -1,20 +1,19 @@
 from django.shortcuts import render
-from .serializators import PolygonOwnerSerializator
 from rest_framework import generics
 from .models import Polygon
+from .serializators import PolygonOwnerSerializator
 
-#
-# Рендерит карту по запросу
-#
 
 def mapView(request):
+    """
+    Рендерит карту по запросу
+    """
     return render(request, 'site_back/map_over_osm.html')
 
 
-#
-#### Отправляет JSON от сериализатора по запросу 
-#
-
 class UserPolygonsView(generics.ListAPIView):
+    """
+    Отправляет JSON от сериализатора по запросу 
+    """
     serializer_class = PolygonOwnerSerializator
     queryset = Polygon.objects.all()

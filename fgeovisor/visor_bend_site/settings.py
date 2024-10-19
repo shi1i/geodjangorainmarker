@@ -52,6 +52,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+X_FRAME_OPTIONS = "SAMEORIGIN"
+
 ROOT_URLCONF = 'visor_bend_site.urls'
 
 TEMPLATES = [
