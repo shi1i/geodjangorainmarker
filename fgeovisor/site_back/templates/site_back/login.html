@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход в аккаунт</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            overflow-x: hidden;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #282c34; /* Цвет фона */
+        }
+        .login-container {
+            width: 100%;
+            height: 310px;
+            max-width: 660px; /* Максимальная ширина контейнера */
+            margin: auto; /* Центрирование */
+            background-color: #38393c; /* Цвет фона формы */
+            padding: 20px; /* Внутренние отступы */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Тень */
+        }
+        h2 {
+            text-align: center;
+            color: #ffffff; /* Цвет заголовка */
+            margin-bottom: 20px; /* Отступ снизу */
+        }
+        .input-group {
+            margin-bottom: 15px; /* Отступ между полями ввода */
+            display: flex; /* Используем flexbox для выравнивания */
+            justify-content: center; /* Центрируем содержимое */
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%; /* Полная ширина */
+            height: 40px; /* Высота полей ввода */
+            padding: 0 10px; /* Отступы внутри поля */
+            border: 1px solid #ccc; /* Цвет границы */
+            border-radius: 5px; /* Закругленные углы */
+            font-size: 16px; /* Размер шрифта */
+            transition: border 0.3s; /* Плавный переход при фокусировке */
+        }
+        input[type="text"]:focus, input[type="password"]:focus {
+            border: 1px solid #4a90e2; /* Цвет границы при фокусировке */
+            outline: none; /* Убираем стандартное выделение */
+        }
+        button {
+            width: 100%; /* Полная ширина */
+            height: 40px; /* Высота кнопки */
+            background-color: #4a90e2; /* Цвет кнопки */
+            color: white; /* Цвет текста кнопки */
+            border: none; /* Убираем границу */
+            border-radius: 5px; /* Закругленные углы */
+            font-size: 16px; /* Размер шрифта */
+            cursor: pointer; /* Курсор в виде указателя */
+            transition: background-color 0.3s; /* Плавный переход цвета */
+        }
+        button:hover {
+            background-color: #357ab8; /* Цвет кнопки при наведении */
+        }
+        .login-help {
+            text-align: center; /* Центрируем текст */
+            margin-top: 10px; /* Отступ сверху */
+        }
+        .login-help a {
+            color: #4a90e2; /* Цвет ссылки */
+            text-decoration: none; /* Убираем подчеркивание */
+            transition: color 0.3s; /* Плавный переход цвета */
+        }
+        .login-help a:hover {
+            color: #357ab8; /* Цвет ссылки при наведении */
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <form class="login-form">
+            <h2>Вход в аккаунт</h2>
+            <div class="input-group">
+                <input type="text" id="username" name="username" placeholder="Введите имя пользователя или email" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" name="password" placeholder="Введите пароль" required>
+            </div>
+            <button type="submit">Войти</button>
+            <div class="login-help">
+                <a href="#">Забыли пароль?</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
