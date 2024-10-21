@@ -5,6 +5,7 @@ function initMap() {
     var bounds = L.latLngBounds(southWest, northEast);
 
     var map = L.map('map', {
+        attributionControl:false,
         maxBounds: bounds,
         maxBoundsViscosity: 1.0,
         minZoom: 3,
