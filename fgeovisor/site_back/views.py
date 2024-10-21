@@ -13,18 +13,6 @@ def mapView(request):
     """
     return render(request, 'site_back/map_over_osm.html')
 
-def loginView(request):
-    """
-    Рендерит виджет логина по запросу
-    """
-    return render(request, 'site_back/login.html')
-
-def regView(request):
-    """
-    Рендерит виджет регистрации по запросу
-    """
-    return render(request, 'site_back/registration.html')
-
 """
 Request запросы на JSON
 """
