@@ -15,15 +15,6 @@ executing==2.0.1
 idna==3.6
 ipykernel==6.29.4
 ipython==8.23.0
-jedi==0.19.1
-jupyter_client==8.6.1
-jupyter_core==5.7.2
-Kivy==2.3.0
-kivy-deps.angle==0.4.0
-kivy-deps.glew==0.3.1
-kivy-deps.gstreamer==0.3.3
-kivy-deps.sdl2==0.7.0
-Kivy-Garden==0.1.5
 Markdown==3.6
 matplotlib-inline==0.1.7
 nest-asyncio==1.6.0

@@ -20,9 +20,5 @@ pyhon fgeovisor\manage.py makemigrations
 pyhon fgeovisor\manage.py migrate
 reg add "%regKey%" /v "%regValue%" /t REG_SZ /d "Запущен %date% %time%" /f
 :end
-<<<<<<< HEAD
-call prac\prac-env\Scripts\activate.bat
-=======
 call %folder_name%_venv\Scripts\activate.bat
->>>>>>> main
 python fgeovisor\manage.py runserver 8000
