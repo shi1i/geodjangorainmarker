@@ -8,14 +8,7 @@ def mapView(request):
     """
     Рендерит карту по запросу
     """
-    return render(request, 'site_back/map_over_osm.html')
-
-def loginView(request):
-    return render(request, 'site_back/login.html')
-
-def regView(request):
-    return render(request, 'site_back/registration.html')
-
+    return render(request, 'map_over_osm.html')
 
 class UserPolygonsView(generics.ListAPIView):
     """

@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Карта с OpenStreetMap</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+</head>
+<body>
+
+    <!-- Боковое меню -->
+    <div id="sidebar" class="sidebar" style="width: 0;">
+        <a href="#" onclick="showLoginForm()">Войти</a>
+        <a href="#" onclick="showRegistrationForm()">Зарегистрироваться</a>
+    </div>
+
+    <!-- Карта -->
+    <div id="map"></div>
+
+    <!-- Кнопка открытия меню -->
+    <button id="menuButton" class="menu-button" onclick="toggleSidebar()">☰</button>
+
+    <!-- Модальное окно для форм -->
+    <div id="modal" class="modal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modalBody" id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Встраиваем формы в скрытые элементы -->
+    <div style="display: none;">
+        <div id="loginForm">
+            <!-- Содержимое файла login.html -->
+            <h2>Вход</h2>
+            <form>
+                <input placeholder="Введите email" type="text" id="username" name="username" required>
+                <input placeholder="Введите пароль" type="password" id="password" name="password" required>
+                <button type="submit">Войти</button>
+                <div class="login-help">
+                    <a href ='#' onclick="closeModal(),showRegistrationForm()">Нет аккаунта</a>
+                </div>
+            </form>
+        </div>
+
+        <div id="registrationForm">
+            <!-- Содержимое файла registration.html -->
+            <h2>Регистрация</h2>
+            <form>
+                <input placeholder="Введите имя пользователя" type="text" if = "UserName" name = "UserName" required>
+                <input placeholder="Введите email" type="text" id="regUsername" name="username" required>
+                <input placeholder="Введите пароль" type="password" id="regPassword" name="password" required>
+                <button type="submit">Зарегистрироваться</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+</body>
+</html>
