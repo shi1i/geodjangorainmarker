@@ -17,7 +17,7 @@
     </div>
 
     <!-- Карта -->
-    <div id="map" onmousedown="document.getElementById('sidebar').style.width = '0px'"></div>
+    <div id="map" onmousedown="document.getElementById('sidebar').style.width='0px'"></div>
 
     <!-- Кнопка открытия меню -->
     <button id="menuButton" class="menu-button" onclick="toggleSidebar()">☰</button>
@@ -48,8 +48,9 @@
         <div id="registrationForm">
             <!-- Содержимое файла registration.html -->
             <h2>Регистрация</h2>
-            <form>
-                <input placeholder="Введите имя пользователя" type="text" if = "username" name = "username" required>
+            <form method="post" action="{% url 'sign-in' %}">
+                {% csrf_token %}
+                <input placeholder="Введите имя пользователя" type="text" if = "UserName" name = "username" required>
                 <input placeholder="Введите email" type="text" id="regUsername" name="email" required>
                 <input placeholder="Введите пароль" type="password" id="regPassword" name="password" required>
                 <button type="submit">Зарегистрироваться</button>

@@ -43,3 +43,14 @@ class PolygonOwnerSerializator(serializers.ModelSerializer):
         model = Polygon
         fields = ['login', 'login_username', 'polygon_id', 'polygon_data', 
                     'Images', 'created_at', 'updated_at']
+        
+
+"""
+Сериализатор для регистрации бим бим бам бам
+"""
+
+class UserRegistrationSerializator(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ["username", "email", "password"]
