@@ -4,11 +4,11 @@ from .models import Polygon
 from .serializators import PolygonOwnerSerializator
 
 
-def mapView(request):
+def MapView(request):
     """
     Рендерит карту по запросу
     """
-    return render(request, 'map_over_osm.html')
+    return render(request, 'site_back/map_over_osm.html')
 
 class UserPolygonsView(generics.ListAPIView):
     """
