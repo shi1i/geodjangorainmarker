@@ -1,5 +1,4 @@
 prac\prac-env\pyvenv.cfg
-fgeovisor/migrations
 prac
 py_venv_installer_and_django_start_server
 py_venv_installer_and_django_start_server.bat
@@ -16,4 +15,5 @@ __pycache__\
 *.py[cod]
 *$py.class
 settings.py
-migrations
+site_back\migrations
+site_back/migrations
