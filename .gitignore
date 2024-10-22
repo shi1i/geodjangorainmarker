@@ -6,5 +6,6 @@ py_venv_installer_and_django_start_server.bat
 __pycache__
 geodjangorainmarker
 geodjango
+fgeovisor\site_back\__pycache__\.
 fgeovisor\site_back\__pycache__\
 fgeovisor\site_back\__pycache__
