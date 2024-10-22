@@ -37,12 +37,16 @@ function initMap() {
         map.on('click', onMapClick); // Включаем обработчик кликов
 
         document.getElementById("finishButton").onclick = function() {
-            map.off('click', onMapClick); // Отключаем обработчик кликов
-            map.getContainer().style.cursor = ''; // Возвращаем курсор в исходное состояние
-            document.getElementById("finishButton").style.display = "none"
-            document.getElementById("cancelButton").style.display = "none"
-            document.getElementById("createbutton").style.display = "block"
-            savePolygon(latLng);
+            if (latLng.length >= 3){
+                map.off('click', onMapClick); // Отключаем обработчик кликов
+                map.getContainer().style.cursor = ''; // Возвращаем курсор в исходное состояние
+                document.getElementById("finishButton").style.display = "none"
+                document.getElementById("cancelButton").style.display = "none"
+                document.getElementById("createbutton").style.display = "block"
+                savePolygon(latLng);
+            }else{
+                alert("У поля должно быть минимум 3 угла!")
+            }
         };
 
         document.getElementById("cancelButton").onclick = function(){
