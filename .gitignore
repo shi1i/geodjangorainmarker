@@ -17,3 +17,4 @@ __pycache__\
 settings.py
 site_back\migrations
 site_back/migrations
+migrations
