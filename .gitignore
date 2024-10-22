@@ -8,12 +8,16 @@ geodjango
 *.pyc
 __pycache__
 __pycache__/
+fgeovisor\visor_bend_site\__pycache__
+fgeovisor\visor_bend_site\__pycache__\
 fgeovisor/site_back/__pycache__/
 fgeovisor\site_back\__pycache__
 site_back/__pycache__/
 site_back\__pycache__\
 fgeovisor/site_back/__pycache__
 fgeovisor\site_back\__pycache__\
+fgeovisor/visor_bend_site/__pycache__/
+fgeovisor/visor_bend_site/__pycache__
 __pycache__\
 *.py[cod]
 *$py.class
