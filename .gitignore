@@ -22,4 +22,4 @@ __pycache__\
 *.py[cod]
 *$py.class
 settings.py
-fgeovisor\site_back\migrations
+migrations
