@@ -106,15 +106,28 @@ body {
 }
 
 /* Поля ввода */
-input[type="text"],
-input[type="password"] {
+input{
     margin-bottom: 20px;
-    width: 99%;
     height: 40px; /* Высота полей ввода */
     border: 1px solid #ccc; /* Цвет границы */
     border-radius: 5px; /* Закругленные углы */
     font-size: 16px; /* Размер шрифта */
     transition: border 0.3s, box-shadow 0.3s; /* Плавный переход при фокусировке */
+}
+
+input[type="text"]{
+    width: 99%;
+}
+
+input[type="password"] {
+    float: left;
+    width: 49%;
+    margin-right: 2%;
+    box-sizing: border-box;
+}
+
+input[type="password"]:last-of-type{
+    margin-right: 0;
 }
 
 /* Эффект фокуса на полях ввода */
