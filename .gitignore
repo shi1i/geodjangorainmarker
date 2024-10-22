@@ -9,3 +9,4 @@ geodjango
 fgeovisor\site_back\__pycache__\.
 fgeovisor\site_back\__pycache__\
 fgeovisor\site_back\__pycache__
+*.pyc
