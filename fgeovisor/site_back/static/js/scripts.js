@@ -40,6 +40,10 @@ function closeModal() {
 function showLoginForm() {
     document.getElementById("modalBody").innerHTML = document.getElementById("loginForm").innerHTML; // Загружаем содержимое формы входа
     openModal(); // Открываем модальное окно
+    var passwordField = document.querySelectorAll("#modalBody input[type='password']");
+    passwordField.forEach(function(field){
+        field.style.width = "100%"; // Изменяем ширину поля ввода пароля
+    });
 }
 
 // Функция для отображения формы регистрации
