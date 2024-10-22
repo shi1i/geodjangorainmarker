@@ -35,7 +35,8 @@
         <div id="loginForm">
             <!-- Содержимое файла login.html -->
             <h2>Вход</h2>
-            <form>
+            <form method="post" action="{% url 'log-in' %}">
+                {% csrf_token %}
                 <input placeholder="Введите login" type="text" id="username" name="username" required>
                 <input placeholder="Введите пароль" type="password" id="password" name="password" required>
                 <button type="submit">Войти</button>
