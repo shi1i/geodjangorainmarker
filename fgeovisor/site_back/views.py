@@ -66,7 +66,11 @@ class RegistrationView(APIView):
 
 
 class LoginView(APIView):
-    
+    """
+    Функция логина в аккаунт
+    """ 
+    permission_classes = [rp.AllowAny]
+
     def post(self, request):
         loginData = UserLoginSerializator(data=request.data)
         loginData.is_valid()
