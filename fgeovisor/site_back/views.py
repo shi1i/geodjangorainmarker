@@ -1,12 +1,13 @@
 import rest_framework.permissions as rp
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import AnonymousUser, User
 from rest_framework import generics, status
 from rest_framework.views import APIView
+from django.urls import reverse
 from rest_framework.response import Response
 from .models import Polygon
-from .serializators import PolygonOwnerSerializator, UserRegistrationSerializator
+from .serializators import PolygonOwnerSerializator, UserRegistrationSerializator, UserLoginSerializator
 
 
 """
@@ -26,14 +27,18 @@ class MapView(APIView):
             """
             Просто возвращаем карту 
             """
-            return render(request, "site_back/map_over_osm.html")
+            return render(request, "site_back/map_over_osm.html", context={'auth_check': False})
+            #return Response(user.username)
         else:
             """
             Возвращаем дату из сериализатора
             """
             # // TO
+            
+
             # DO //
-            return render(request, "site_back/map_over_osm.html")
+            return render(request, "site_back/map_over_osm.html", context={'auth_check': True})
+            #return Response(user.username)
         
 class RegistrationView(APIView):
     """
@@ -48,18 +53,30 @@ class RegistrationView(APIView):
             # Сохранение в БД
             registrationData.save()
             # Перенаправление на основную страницу
-            return redirect("/api/map/")
+            return redirect(reverse('map'))
         
             # return Response(template_name="site_back/map_over_osm.html")
         
         # // TO
         # Добавить перенаправление на 404, или сообщение о ошибках.
         # DO //
-        return redirect("/api/map/")
+        return redirect(reverse('map'))
     
         # return Response(template_name="site_back/map_over_osm.html")
 
 
+class LoginView(APIView):
+    
+    def post(self, request):
+        loginData = UserLoginSerializator(data=request.data)
+        loginData.is_valid()
+        username = loginData.data.get('username')
+        password = loginData.data.get('password')
+        user = authenticate(username=username, password=password)
+        login(request, user)
+        return redirect(reverse('map'))
+  
+    
 """
 Request запросы на JSON
 """
@@ -71,4 +88,10 @@ class UserPolygonsView(generics.ListAPIView):
     serializer_class = PolygonOwnerSerializator
     queryset = Polygon.objects.all()
 
+"""
+Функции КОпатыча
+"""
+def logoutView(request):
+    logout(request)
+    return redirect(reverse('map'))
 

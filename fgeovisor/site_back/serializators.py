@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from .models import Polygon, Image, SessionStorage, ActivityLog
+from django.contrib.auth import login, authenticate
 
 """
 Тут храним сериализаторы данных из quaryset моделей, который в БД у нас
@@ -67,3 +68,15 @@ class UserRegistrationSerializator(serializers.ModelSerializer):
         user.save()
         return user 
 
+
+class UserLoginSerializator(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ["username", "password"]
+        
+        #extra_kwargs = {'password': {'read_only': True}}
+    
+
+
+    
