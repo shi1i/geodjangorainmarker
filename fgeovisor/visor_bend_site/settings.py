@@ -83,9 +83,9 @@ DATABASES = {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'fgeovisor2',
         'USER': 'postgres',
-        'PASSWORD': '1595',
+        'PASSWORD': '6451yyul',
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': '',
     }
 }
 

@@ -17,9 +17,9 @@ function initMap() {
     }).addTo(map);
 }
 
-// Функция для смены бокового меню
+//функция для смены контента бокового меню
 function switchsidebarcontent(){
-    fetch(/вставить url  страницы авторизации/)
+    fetch(/*вставить url  страницы авторизации*/)
         .then(function(response){
             return response.json();
         })
@@ -98,4 +98,5 @@ function bindValidation() {
 document.addEventListener("DOMContentLoaded", function() {
     initMap();
     bindValidation();
+    switchsidebarcontent();
 });
