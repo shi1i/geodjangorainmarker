@@ -7,8 +7,8 @@ __pycache__
 geodjangorainmarker
 geodjango
 *.pyc
-fgeovisor\site_back\__pycache__\models.cpython-312.pyc
-fgeovisor\site_back\__pycache__\urls.cpython-312.pyc
-fgeovisor\site_back\__pycache__\views.cpython-312.pyc
-fgeovisor\visor_bend_site\__pycache__\settings.cpython-312.pyc
-fgeovisor\visor_bend_site\__pycache__\urls.cpython-312.pyc
+models.cpython-312.pyc
+urls.cpython-312.pyc
+views.cpython-312.pyc
+settings.cpython-312.pyc
+urls.cpython-312.pyc
