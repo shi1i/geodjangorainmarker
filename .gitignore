@@ -3,12 +3,9 @@ fgeovisor\migrations
 prac
 py_venv_installer_and_django_start_server
 py_venv_installer_and_django_start_server.bat
-__pycache__
 geodjangorainmarker
 geodjango
 *.pyc
-models.cpython-312.pyc
-urls.cpython-312.pyc
-views.cpython-312.pyc
-settings.cpython-312.pyc
-urls.cpython-312.pyc
+__pycache__/
+*.py[cod]
+*$py.class
