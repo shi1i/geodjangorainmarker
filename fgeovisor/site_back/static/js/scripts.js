@@ -1,4 +1,3 @@
-// Функция для инициализации карты
 function initMap() {
     var southWest = L.latLng(-85.0511287798, -180),
         northEast = L.latLng(85.0511287798, 180);
@@ -15,24 +14,71 @@ function initMap() {
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
-}
+    
+    let polygons = [];
 
-//функция для смены контента бокового меню
-function switchsidebarcontent(){
-    fetch(/*вставить url  страницы авторизации*/)
+    function createpoligon(){
+        document.getElementById("createbutton").style.display = "none"
+        document.getElementById("finishButton").style.display = "block"
+        document.getElementById("cancelButton").style.display = "block"
+        let latLng = [];
+        let newfield = L.polygon(latLng, { color: 'deepskyblue' }).addTo(map);
+        polygons.push(newfield);
+
+
+        // Меняем курсор при старте создания полигона
+        map.getContainer().style.cursor = 'crosshair';
+
+         function onMapClick(e) {
+            latLng.push(e.latlng); // Добавляем координаты клика в массив
+            newfield.setLatLngs(latLng); // Обновляем полигон с новыми координатами
+        }
+
+        map.on('click', onMapClick); // Включаем обработчик кликов
+
+        document.getElementById("finishButton").onclick = function() {
+            map.off('click', onMapClick); // Отключаем обработчик кликов
+            map.getContainer().style.cursor = ''; // Возвращаем курсор в исходное состояние
+            document.getElementById("finishButton").style.display = "none"
+            document.getElementById("cancelButton").style.display = "none"
+            document.getElementById("createbutton").style.display = "block"
+            savePolygon(latLng);
+        };
+
+        document.getElementById("cancelButton").onclick = function(){
+            map.off('click', onMapClick);
+            map.getContainer().style.cursor = '';
+            document.getElementById("finishButton").style.display = "none"
+            document.getElementById("cancelButton").style.display = "none"
+            document.getElementById("createbutton").style.display = "block"
+            newfield.remove();
+        }
+
+    }
+
+    document.getElementById("createbutton").onclick = function(){
+        createpoligon();
+    }
+    
+
+    function savePolygon(latLng){
+        const data ={
+            latLng: latLng.map(function(point){
+                return [point.lat, point.lng];
+            })
+        };
+        fetch('/save_polygon',{
+            method: 'POST',
+            headers: {
+                'Content-Type':application/JSON,
+                'X-CSRFToken':csrfToken
+            },
+            body: JSON.stringify(data)
+        })
         .then(function(response){
             return response.json();
         })
-        .then(function(data){
-            if (data.authenticated){
-                //нахерячить одни кнопки
-            }else{
-                //нахерячить стандартные кнопки
-            }
-        })
-        .catch (function(error){
-            console.error('Error:', error);
-        });
+    }
 }
 
 // Функция для переключения бокового меню
@@ -94,9 +140,22 @@ function bindValidation() {
     }
 }
 
-// Инициализация карты при загрузке страницы
+// функция для создания полигонов
+
+
+//Инициализация карты при загрузке страницы
 document.addEventListener("DOMContentLoaded", function() {
     initMap();
     bindValidation();
+    function switchsidebarcontent(){
+        if (authcheck == "False"){
+            document.getElementById("createbutton").style.display = "none";
+            document.getElementById("loggedinbuttons").style.display = "none";
+            document.getElementById("defoltview").style.display = "block";
+        }else{
+            document.getElementById("loggedinbuttons").style.display = "block";
+            document.getElementById("defoltview").style.display = "none";
+        }
+    }
     switchsidebarcontent();
 });
