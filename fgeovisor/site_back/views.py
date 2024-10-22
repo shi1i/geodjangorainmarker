@@ -28,7 +28,7 @@ class MapView(APIView):
             Просто возвращаем карту 
             """
             return render(request, "site_back/map_over_osm.html", context={'auth_check': False})
-            #return Response(user.username)
+            # return Response(user.username)
         else:
             """
             Возвращаем дату из сериализатора
@@ -38,7 +38,7 @@ class MapView(APIView):
 
             # DO //
             return render(request, "site_back/map_over_osm.html", context={'auth_check': True})
-            #return Response(user.username)
+            # return Response(user.username)
         
 class RegistrationView(APIView):
     """

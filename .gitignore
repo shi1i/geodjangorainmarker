@@ -21,3 +21,4 @@ fgeovisor/visor_bend_site/__pycache__
 __pycache__\
 *.py[cod]
 *$py.class
+settings.py
