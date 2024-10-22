@@ -17,6 +17,24 @@ function initMap() {
     }).addTo(map);
 }
 
+// Функция для смены бокового меню
+function switchsidebarcontent(){
+    fetch(/вставить url  страницы авторизации/)
+        .then(function(response){
+            return response.json();
+        })
+        .then(function(data){
+            if (data.authenticated){
+                //нахерячить одни кнопки
+            }else{
+                //нахерячить стандартные кнопки
+            }
+        })
+        .catch (function(error){
+            console.error('Error:', error);
+        });
+}
+
 // Функция для переключения бокового меню
 function toggleSidebar() {
     const sidebar = document.getElementById("sidebar");
