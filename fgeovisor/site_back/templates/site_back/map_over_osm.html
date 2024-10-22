@@ -51,9 +51,10 @@
             <h2>Регистрация</h2>
             <form method="post" action="{% url 'sign-in' %}">
                 {% csrf_token %}
-                <input placeholder="Введите имя пользователя" type="text" if = "UserName" name = "username" required>
-                <input placeholder="Введите email" type="text" id="regUsername" name="email" required>
+                <input placeholder="Введите имя пользователя" type="text" id = "UserName" onsubmit="return validatePasswords()" name = "username" required>
+                <input placeholder="Введите email" type="text" id="regEmail" name="email" required>
                 <input placeholder="Введите пароль" type="password" id="regPassword" name="password" required>
+                <input placeholder="Повторите пароль" type="password" id="passwordConfirmation" name="passwordConfirmation" required>
                 <button type="submit">Зарегистрироваться</button>
             </form>
         </div>

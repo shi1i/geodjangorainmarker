@@ -46,7 +46,34 @@ function showLoginForm() {
 function showRegistrationForm() {
     document.getElementById("modalBody").innerHTML = document.getElementById("registrationForm").innerHTML; // Загружаем содержимое формы регистрации
     openModal(); // Открываем модальное окно
+    var form = document.querySelector("form[action]");
+    form.addEventListener("submit", function(event) {
+        var password = document.getElementById("regPassword").value;
+        var confirmPassword = document.getElementById("passwordConfirmation").value;
+        if (password !== confirmPassword) {
+            alert("Пароли не совпадают!");
+            event.preventDefault(); // Предотвращаем отправку формы
+        }
+    });
+}
+
+// Функция для привязки валидации пароля
+function bindValidation() {
+    var form = document.querySelector("form[action]");
+    if (form) {
+        form.addEventListener("submit", function(event) {
+            var password = document.getElementById("regPassword").value;
+            var confirmPassword = document.getElementById("passwordConfirmation").value;
+            if (password !== confirmPassword) {
+                alert("Пароли не совпадают!");
+                event.preventDefault(); // Предотвращаем отправку формы
+            }
+        });
+    }
 }
 
 // Инициализация карты при загрузке страницы
-document.addEventListener("DOMContentLoaded", initMap);
+document.addEventListener("DOMContentLoaded", function() {
+    initMap();
+    bindValidation();
+});
