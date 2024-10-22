@@ -39,11 +39,18 @@ function initMap() {
                 document.getElementById("finishButton").style.display = "none"
                 document.getElementById("cancelButton").style.display = "none"
                 document.getElementById("createbutton").style.display = "block"
+                //начало блока с попапами//
+                let popupContent = document.createElement('div');
+                /*let button = document.getElementById('deleteButton'.cloneNode(True));
+                popupContent.appendChild(button)*/
+                newfield.bindPopup(popupContent)  //присвоение попапа 
+                //конец юлока с попапами
                 savePolygon(latLng);
             }else{
                 alert("У поля должно быть минимум 3 угла!")
             }
         };
+        
 
         document.getElementById("cancelButton").onclick = function(){
             map.off('click', onMapClick);
@@ -53,7 +60,6 @@ function initMap() {
             document.getElementById("createbutton").style.display = "block"
             newfield.remove();
         }
-
     }
 
     document.getElementById("createbutton").onclick = function(){
