@@ -10,3 +10,8 @@ fgeovisor\site_back\__pycache__\.
 fgeovisor\site_back\__pycache__\
 fgeovisor\site_back\__pycache__
 *.pyc
+fgeovisor/site_back/__pycache__/models.cpython-312.pyc
+fgeovisor/site_back/__pycache__/urls.cpython-312.pyc
+fgeovisor/site_back/__pycache__/views.cpython-312.pyc
+fgeovisor/visor_bend_site/__pycache__/settings.cpython-312.pyc
+fgeovisor/visor_bend_site/__pycache__/urls.cpython-312.pyc
