@@ -43,3 +43,27 @@ class PolygonOwnerSerializator(serializers.ModelSerializer):
         model = Polygon
         fields = ['login', 'login_username', 'polygon_id', 'polygon_data', 
                     'Images', 'created_at', 'updated_at']
+        
+
+"""
+Сериализатор для регистрации бим бим бам бам
+"""
+
+class UserRegistrationSerializator(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ["username", "email", "password"]
+        extra_kwargs = {'password': {'write_only': True}}
+
+    def create(self, validated_data):
+        """
+        Хэширование пароля, т.к. django самостоятельно этого на уровне модели
+        не умеет, точнее хэширование может быть только в процессах
+        """
+        password = validated_data.pop("password")
+        user = User(**validated_data)
+        user.set_password(password)
+        user.save()
+        return user 
+
