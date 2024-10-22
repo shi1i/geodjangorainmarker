@@ -15,7 +15,6 @@ function initMap() {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
     
-    let polygons = [];
 
     function createpoligon(){
         document.getElementById("createbutton").style.display = "none"
@@ -23,7 +22,6 @@ function initMap() {
         document.getElementById("cancelButton").style.display = "block"
         let latLng = [];
         let newfield = L.polygon(latLng, { color: 'deepskyblue' }).addTo(map);
-        polygons.push(newfield);
 
 
         // Меняем курсор при старте создания полигона
