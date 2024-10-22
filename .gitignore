@@ -1,4 +1,5 @@
 geodjangorainmarker-main_venv/
 /fgeovisor/siteback/__pycache__
 __pycache__
-fgeovisor\migrations
+fgeovisor/site_back/migrations
+fgeovisor/visor_bend_site/settings.py
