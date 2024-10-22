@@ -25,6 +25,6 @@ import site_back.views as views
 
 urlpatterns = [
     path('secretadmin/', admin.site.urls, name="admin"),
-    path('api/', include('site_back.urls'), name="api"),
+    path('', include('site_back.urls'), name="api"),
     path('api/users/', views.UserPolygonsView.as_view(), name="users")
 ]

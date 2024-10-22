@@ -66,6 +66,28 @@ body {
     background-color: deepskyblue;
 }
 
+.ui-button {
+    font-size: 20px;
+    background-color: #38393c;
+    color: white;
+    margin-top: 20px;
+    padding: 5px 10px;
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 2;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    width: auto;
+    min-width: 50px;
+    transition: background-color 0.3s;
+}
+
+.ui-button[id="cancelButton"]{
+    top: 80px;
+}
+
 /* Модальное окно */
 .modal {
     display: none; /* Скрыто по умолчанию */
