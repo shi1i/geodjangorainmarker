@@ -23,4 +23,3 @@ __pycache__\
 *$py.class
 settings.py
 fgeovisor\site_back\migrations
-fgeovisor/site_back/migrations
