@@ -44,10 +44,10 @@ function initMap() {
                 document.getElementById("createbutton").style.display = "block"
                 //начало блока с попапами//
                 let popupContent = document.createElement('div');
-                popupContent.appendChild(document.createTextNode("Это полный пиздец"));
-                popupContent.appendChild(document.getElementById('calcNdvi'));
-                
-                //popupContent.appendChild(calcNdvi);
+                let calcNDVI = document.getElementById('calcNdvi').cloneNode(true);
+                calcNDVI.id='calcNdviClone';
+                popupContent.appendChild(document.createTextNode("Это поле"));
+                popupContent.appendChild(calcNDVI);
                 newfield.bindPopup(popupContent);  //присвоение попапа 
                 //конец юлока с попапами
                 savePolygon(latLng);
@@ -90,13 +90,17 @@ function initMap() {
         })
     }
 }
-document.getElementById("calcNdvi").onclick = function(){
-    calcNDVI();
-}
+
 
 function calcNDVI(){
     alert("1334");
 }
+
+document.addEventListener("click", function(event){
+    if (event.target && event.target.id.startsWith("calcNdviClone")){
+        calcNDVI();
+    }
+})
 
 // Функция для переключения бокового меню
 function toggleSidebar() {
