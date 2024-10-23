@@ -20,7 +20,8 @@ function initMap() {
         document.getElementById("finishButton").style.display = "block"
         document.getElementById("cancelButton").style.display = "block"
         let latLng = [];
-        let newfield = L.polygon(latLng, { color: 'deepskyblue' }).addTo(map);
+        let newfield = L.polygon(latLng, { color: 'deepskyblue', dashArray: "10, 5" }).addTo(map);
+        
 
         // Меняем курсор при старте создания полигона
         map.getContainer().style.cursor = 'crosshair';
@@ -34,6 +35,8 @@ function initMap() {
 
         document.getElementById("finishButton").onclick = function() {
             if (latLng.length >= 3){
+                const newStyle = {dashArray: "0, 0"};
+                newfield.setStyle(newStyle);
                 map.off('click', onMapClick); // Отключаем обработчик кликов
                 map.getContainer().style.cursor = ''; // Возвращаем курсор в исходное состояние
                 document.getElementById("finishButton").style.display = "none"
@@ -41,9 +44,11 @@ function initMap() {
                 document.getElementById("createbutton").style.display = "block"
                 //начало блока с попапами//
                 let popupContent = document.createElement('div');
-                /*let button = document.getElementById('deleteButton'.cloneNode(True));
-                popupContent.appendChild(button)*/
-                newfield.bindPopup(popupContent)  //присвоение попапа 
+                popupContent.appendChild(document.createTextNode("Это полный пиздец"));
+                popupContent.appendChild(document.getElementById('calcNdvi'));
+                
+                //popupContent.appendChild(calcNdvi);
+                newfield.bindPopup(popupContent);  //присвоение попапа 
                 //конец юлока с попапами
                 savePolygon(latLng);
             }else{
@@ -51,7 +56,6 @@ function initMap() {
             }
         };
         
-
         document.getElementById("cancelButton").onclick = function(){
             map.off('click', onMapClick);
             map.getContainer().style.cursor = '';
@@ -65,7 +69,7 @@ function initMap() {
     document.getElementById("createbutton").onclick = function(){
         createpoligon();
     }
-    
+
 
     function savePolygon(latLng){
         const data ={
@@ -85,6 +89,13 @@ function initMap() {
             return response.json();
         })
     }
+}
+document.getElementById("calcNdvi").onclick = function(){
+    calcNDVI();
+}
+
+function calcNDVI(){
+    alert("1334");
 }
 
 // Функция для переключения бокового меню
