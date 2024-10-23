@@ -102,4 +102,3 @@ class UserPolygonsView(generics.ListAPIView):
 def logoutView(request):
     logout(request)
     return redirect(reverse('map'))
-
