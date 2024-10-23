@@ -23,12 +23,6 @@ class ImageSerializator(serializers.ModelSerializer):
         model = Image
         fields = '__all__'
 
-# Нерабочая хуйня
-class UserSerializator(serializers.ModelSerializer):
-
-    class Meta:
-        model = User
-        fields = ["login_username"]
 
 
 #### Основной сериализатор с связми User + полигон + изображение
@@ -55,7 +49,7 @@ class UserRegistrationSerializator(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ["username", "email", "password"]
-        extra_kwargs = {'password': {'write_only': True}}
+        #extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
         """
@@ -68,7 +62,7 @@ class UserRegistrationSerializator(serializers.ModelSerializer):
         user.save()
         return user 
 
-
+###Сериализатор для логина буп буп биб бам
 class UserLoginSerializator(serializers.ModelSerializer):
 
     class Meta:
