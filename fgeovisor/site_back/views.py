@@ -34,8 +34,9 @@ class MapView(APIView):
             Возвращаем дату из сериализатора
             """
             # // TO
+            #context={'auth_check': True,
+                     #'is_staff': user.is_staff}
             
-
             # DO //
             return render(request, "site_back/map_over_osm.html", context={'auth_check': True})
             #return Response(user.username)
@@ -52,29 +53,36 @@ class RegistrationView(APIView):
         if registrationData.is_valid():
             # Сохранение в БД
             registrationData.save()
-            # Перенаправление на основную страницу
-            return redirect(reverse('map'))
-        
-            # return Response(template_name="site_back/map_over_osm.html")
-        
-        # // TO
-        # Добавить перенаправление на 404, или сообщение о ошибках.
-        # DO //
+        else: 
+            # // TO
+            # Добавить перенаправление на 404, или сообщение о ошибках.
+            # DO //
+            return Response({"Ошибка": "Неверные данные или пользователь уже существует"})
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        login(request, user)   
         return redirect(reverse('map'))
-    
-        # return Response(template_name="site_back/map_over_osm.html")
-
 
 class LoginView(APIView):
-    
+    """
+    Функция логина в аккаунт
+    """ 
+    permission_classes = [rp.AllowAny]
+
     def post(self, request):
+        # Распакоука данных из сериализатора POST сессии
         loginData = UserLoginSerializator(data=request.data)
         loginData.is_valid()
+
         username = loginData.data.get('username')
         password = loginData.data.get('password')
         user = authenticate(username=username, password=password)
-        login(request, user)
-        return redirect(reverse('map'))
+        try: 
+            login(request, user)
+            return redirect(reverse('map'))
+        except AttributeError:
+            return Response({'AttributeError': "неверный логин или пароль"})
   
     
 """
@@ -94,4 +102,3 @@ class UserPolygonsView(generics.ListAPIView):
 def logoutView(request):
     logout(request)
     return redirect(reverse('map'))
-

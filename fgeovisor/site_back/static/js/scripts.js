@@ -93,7 +93,7 @@ function initMap() {
 
 
 function calcNDVI(){
-    alert("1334");
+    alert("Функция в разработке");
 }
 
 document.addEventListener("click", function(event){
