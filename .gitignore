@@ -1,6 +1,11 @@
 geodjangorainmarker_venv/
+<<<<<<< HEAD
 fgeovisor/siteback/pycache/
 __pycache__/
+=======
+fgeovisor/siteback/__pycache__/
+pycache/
+>>>>>>> 2a5cb4435f5ad49ba7e0406b68f4b1a05d67b577
 fgeovisor/siteback/migrations/
 fgeovisor/visorbend_site/settings.py
 prac\prac-env\pyvenv.cfg
@@ -12,7 +17,11 @@ geodjango
 *.pyc
 __pycache__
 __pycache__/
+<<<<<<< HEAD
 fgeovisor\visor_bend_site_pycache_
+=======
+fgeovisor\visor_bend_site__pycache__
+>>>>>>> 2a5cb4435f5ad49ba7e0406b68f4b1a05d67b577
 fgeovisor\visor_bend_site_pycache\
 fgeovisor/visor_bend_site/pycache/
 fgeovisor/visor_bend_site/pycache
