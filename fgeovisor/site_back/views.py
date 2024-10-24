@@ -28,8 +28,8 @@ class MapView(APIView):
             Просто возвращаем карту 
             
             """
-            context={'auth_check': True,
-                     'is_staff': user.is_staff}
+            context={'auth_check': False,
+                    'is_staff': False}
 
             return render(request, "site_back/map_over_osm.html", context=context)
             #return Response(user.username)
@@ -59,7 +59,10 @@ class RegistrationView(APIView):
             registrationData.save()
         else: 
             # отрисовка карты, отправка ошибки на фронт
-            return render(request, "site_back/map_over_osm.html", context={'is_vallid_error': True})
+            context={"auth_check": False,
+                     "is_staff": False,
+                    'is_vallid_error': True}
+            return render(request, "site_back/map_over_osm.html", context=context)
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
@@ -85,7 +88,10 @@ class LoginView(APIView):
             return redirect(reverse('map'))
         except AttributeError:
             # отрисовка карты, отправка ошибки на фронт
-            return render(request, "site_back/map_over_osm.html", context={'login_error': True})
+            context={"auth_check": False,
+                     "is_staff": False,
+                    'login_error': True}
+            return render(request, "site_back/map_over_osm.html", context=context)
   
     
 """
