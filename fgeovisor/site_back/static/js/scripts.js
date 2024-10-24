@@ -14,7 +14,7 @@ function initMap() {
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
-
+    
     function createpoligon(){
         document.getElementById("createbutton").style.display = "none"
         document.getElementById("finishButton").style.display = "block"
@@ -43,11 +43,26 @@ function initMap() {
                 document.getElementById("cancelButton").style.display = "none"
                 document.getElementById("createbutton").style.display = "block"
                 //начало блока с попапами//
+
                 let popupContent = document.createElement('div');
                 let calcNDVI = document.getElementById('calcNdvi').cloneNode(true);
                 calcNDVI.id='calcNdviClone';
                 popupContent.appendChild(document.createTextNode("Это поле"));
                 popupContent.appendChild(calcNDVI);
+                
+                let deleteB = document.getElementById('deleteButton').cloneNode(true);
+                deleteB.id='deleteBClone';
+                popupContent.appendChild(deleteB);
+                
+                function deletePolygon(newfield){
+                    newfield.remove();
+                }
+
+                deleteB.addEventListener("click", function() {
+                    deletePolygon(newfield);
+                });
+                
+
                 newfield.bindPopup(popupContent);  //присвоение попапа 
                 //конец юлока с попапами
                 savePolygon(latLng);
@@ -93,7 +108,7 @@ function initMap() {
 
 
 function calcNDVI(){
-    alert("1334");
+    alert("Функция в разработке");
 }
 
 document.addEventListener("click", function(event){
