@@ -26,19 +26,23 @@ class MapView(APIView):
         if user.username == AnonymousUser.username:
             """
             Просто возвращаем карту 
+            
             """
-            return render(request, "site_back/map_over_osm.html", context={'auth_check': False})
+            context={'auth_check': True,
+                     'is_staff': user.is_staff}
+
+            return render(request, "site_back/map_over_osm.html", context=context)
             #return Response(user.username)
         else:
             """
             Возвращаем дату из сериализатора
             """
             # // TO
-            #context={'auth_check': True,
-                     #'is_staff': user.is_staff}
+            context={'auth_check': True,
+                     'is_staff': user.is_staff}
             
             # DO //
-            return render(request, "site_back/map_over_osm.html", context={'auth_check': True})
+            return render(request, "site_back/map_over_osm.html", context=context)
             #return Response(user.username)
         
 class RegistrationView(APIView):
@@ -54,10 +58,8 @@ class RegistrationView(APIView):
             # Сохранение в БД
             registrationData.save()
         else: 
-            # // TO
-            # Добавить перенаправление на 404, или сообщение о ошибках.
-            # DO //
-            return Response({"Ошибка": "Неверные данные или пользователь уже существует"})
+            # отрисовка карты, отправка ошибки на фронт
+            return render(request, "site_back/map_over_osm.html", context={'is_vallid_error': True})
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
@@ -74,7 +76,7 @@ class LoginView(APIView):
         # Распакоука данных из сериализатора POST сессии
         loginData = UserLoginSerializator(data=request.data)
         loginData.is_valid()
-
+        #автовход после регистрации
         username = loginData.data.get('username')
         password = loginData.data.get('password')
         user = authenticate(username=username, password=password)
@@ -82,7 +84,8 @@ class LoginView(APIView):
             login(request, user)
             return redirect(reverse('map'))
         except AttributeError:
-            return Response({'AttributeError': "неверный логин или пароль"})
+            # отрисовка карты, отправка ошибки на фронт
+            return render(request, "site_back/map_over_osm.html", context={'login_error': True})
   
     
 """
